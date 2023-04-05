@@ -34,4 +34,24 @@ router
       });
   });
 
+router
+  .route("/test3")
+  .get(async (req, res) => {
+    const stocks = await Stock.find();
+    res.render("editStock", { stocks: stocks });
+  })
+  .post(async (req, res, next) => {
+    console.log(req.body);
+    await Stock.findOneAndUpdate(
+      { stockNum: req.body.stockNum },
+      { price: req.body.price }
+    )
+      .then((result) => {
+        res.redirect("/Matcom@Stock123456Admin/test3");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  });
+
 module.exports = router;
