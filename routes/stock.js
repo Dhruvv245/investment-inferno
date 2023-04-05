@@ -17,6 +17,8 @@ module.exports.makeStock = async (req, res, next) => {
     });
 };
 
+//api-for getting stocks
+
 module.exports.stockData = async (req, res, next, check) => {
   let value1 = Math.random() * 22;
   let plusOrMinus = Math.round(Math.random()) * 2 - 1;
@@ -32,4 +34,10 @@ module.exports.stockData = async (req, res, next, check) => {
     .catch((err) => {
       console.log(err);
     });
+};
+
+module.exports.stockDataFront = async (req, res, next) => {
+  const data = await Stock.find();
+  console.log(data);
+  res.render("stock-view", { data: data });
 };

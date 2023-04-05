@@ -11,8 +11,10 @@ const Stock = require("./models/stock");
 const stock = require("./routes/stock");
 const login = require("./routes/login");
 const userStock = require("./routes/user-stock");
+const admin = require("./admin/admin");
 const console = require("console");
 const MONGODB_URI = process.env.MONGODB_URI;
+const cors = require("cors");
 
 const stockPrice = () => {
   const date = new Date();
@@ -68,7 +70,13 @@ app.set("views", path.join(__dirname, "views"));
 app.use(express.static(path.join(__dirname, "public")));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.get("/", (req, res) => {
+app.use(cors());
+
+app.use("/Matcom@Stock123456Admin", admin);
+app.get("/login", (req, res) => {
+  res.render("login2");
+});
+app.get("/register", (req, res) => {
   res.render("login");
 });
 
@@ -85,9 +93,20 @@ app.get("/stock-api", async (req, res) => {
       console.log(err);
     });
 });
-app.get("/test", stock.makeStock);
+// app.get("/test", stock.makeStock);
+app.get("/test", stock.stockDataFront);
 app.post("/test", userStock.buy);
 app.post("/test2", userStock.sell);
+app.get("/getstocks", async (req, res) => {
+  await Stock.find()
+    .then((result) => {
+      console.log(result);
+      res.render("stock-view", { data: result });
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+});
 app.post(
   "/login",
 

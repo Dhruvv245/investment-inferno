@@ -21,6 +21,10 @@ body {
   overflow-x: hidden;
 }
 
+a {
+  text-decoration: none;
+  color: #acacac;
+}
 .container {
   position: relative;
   width: 100%;

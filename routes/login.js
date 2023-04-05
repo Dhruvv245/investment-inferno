@@ -58,10 +58,7 @@ Dear ${name} your password is :-${password}. Please use this to login again.`,
         .then(() => {
           //email sent and verification saved
 
-          res.status(201).json({
-            type: "success",
-            message: "mail sent",
-          });
+          res.render("thankU");
         })
         .catch((err) => {
           console.log(err);
@@ -74,7 +71,6 @@ Dear ${name} your password is :-${password}. Please use this to login again.`,
     .catch((err) => {
       console.log(err);
     });
-  res.render("thankU");
 };
 
 module.exports.UserLogin = async (req, res, next) => {
