@@ -5,7 +5,11 @@ const StudentSchema = new Schema({
   name: String,
   email: String,
   password: String,
-  amount: Number,
+  amount: {
+    type: Number,
+
+    default: 10000,
+  },
   userStock: {
     stocks: [
       {

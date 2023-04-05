@@ -1,9 +1,13 @@
 const express = require("express");
 const router = express.Router();
 const Stock = require("../models/stock");
+const Student = require("../models/student");
 
-router.route("/test").get((req, res) => {
-  res.render("admin");
+router.route("/test").get(async (req, res) => {
+  const stocks = await Stock.find();
+  const students = await Student.find();
+  console.log(stocks, students);
+  res.render("admin", { stocks: stocks, students: students });
 });
 
 router

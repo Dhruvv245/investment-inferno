@@ -139,7 +139,7 @@
              <div class="discount-type">Beyond Scientific Computing</div>
             </div>
            </div>
-           <div class="button offer-button">Admin DashBoard</div>
+           <div class="button offer-button">Edit Stocks</div>
           </div>
           <div class="cards-wrapper" style="--delay: .6s">
            <div class="cards-header">
@@ -218,19 +218,19 @@
           </div>
           <div class="account-wrapper" style="--delay: .8s">
            <div class="account-profile">
-            <img src="https://images.unsplash.com/photo-1550314124-301ca0b773ae?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=2215&q=80" alt="">
+            <img src="/mat2.jpeg" alt="">
             <div class="blob-wrap">
              <div class="blob"></div>
              <div class="blob"></div>
              <div class="blob"></div>
             </div>
-            <div class="account-name">Mike J Morgan</div>
-            <div class="account-title">Taxi Driver</div>
+            <div class="account-name">Admins</div>
+            <div class="account-title">Supremacy</div>
            </div>
            <div class="account card">
-            <div class="account-cash">$ 5637.04</div>
-            <div class="account-income">Total Income</div>
-            <div class="account-iban">**** **** **** 3060</div>
+            <div class="account-cash">LEADERBOARD</div>
+            <div class="account-income"></div>
+            <div class="account-iban">**** **** **** ****</div>
            </div>
           </div>
          </div>
@@ -256,22 +256,22 @@
              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus">
               <path d="M12 5v14M5 12h14" />
              </svg>
-             Create
+    <a href="/Matcom@Stock123456Admin/test2">Create</a> 
             </div>
            </div>
            <div class="cards card">
             <table class="table">
              <thead>
               <tr>
-               <th>T</th>
-               <th>Name</th>
-               <th>From</th>
-               <th>To</th>
-               <th>V</th>
-               <th>B</th>
-               <th>C</th>
-               <th>A</th>
-               <th>W</th>
+               <th></th>
+               <th>Stock</th>
+               <th>Stock-Number</th>
+               <th>Price</th>
+               <th>Trans</th>
+               <th></th>
+               <th></th>
+               <th></th>
+               <th></th>
                <th>Status</th>
               </tr>
              </thead>
@@ -279,14 +279,14 @@
               <tr>
                <td>
                 <input type="checkbox" id="row1" class="table-row">
-                <span class="time">17.00</span>
+                <span class="time"><%=stocks[0].stockNum%></span>
                </td>
-               <td>John D</td>
-               <td>Sudbury Station</td>
-               <td>Center Plaza</td>
+               <td><%=stocks[0].name%></td>
+               <td><%=stocks[0].stockNum%></td>
+               <td>&#8377; <%=stocks[0].price%></td>
                <td>N</td>
                <td></td>
-               <td>€</td>
+               <td></td>
                <td></td>
                <td><svg viewBox="-22 0 134 134.06032" fill="currentColor">
                  <path d="M23.347656 134.058594C8.445312 84.953125 39.933594 67.023438 39.933594 67.023438c-2.203125 26.203124 12.6875 46.617187 12.6875 46.617187 5.476562-1.652344 15.929687-9.375 15.929687-9.375 0 9.375-5.515625 29.78125-5.515625 29.78125s19.308594-14.929687 25.386719-39.726563c6.070313-24.796874-11.5625-49.691406-11.5625-49.691406 1.0625 17.550782-4.875 34.8125-16.507813 48 .582032-.671875 1.070313-1.417968 1.445313-2.226562 2.089844-4.179688 5.445313-15.042969 3.480469-40.199219C62.511719 14.890625 30.515625 0 30.515625 0c2.757813 21.515625-5.511719 26.472656-24.882813 67.3125-19.371093 40.832031 17.714844 66.746094 17.714844 66.746094zm0 0" />
@@ -302,28 +302,27 @@
               <tr>
                <td>
                 <input type="checkbox" id="row2" class="table-row">
-                <span class="time">17.00</span>
+                <span class="time"><%=stocks[1].stockNum%></span>
                </td>
-               <td>Rufi</td>
-               <td>One Beacon</td>
-               <td>Los Angeles</td>
+               <td><%=stocks[1].name%></td>
+               <td><%=stocks[1].stockNum%></td>
+               <td>&#8377; <%=stocks[0].price%></td>
                <td>N</td>
                <td></td>
-               <td>€</td>
+               <td></td>
                <td></td>
                <td><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-activity">
                  <path d="M22 12h-4l-3 9L9 3l-3 9H2" />
                 </svg></td>
                <td>
-                <div class="status is-red">
-                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M18 6L6 18M6 6l12 12" />
-                 </svg>
-                 Rejected
-                </div>
+                <div class="status is-green"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M20 6L9 17l-5-5" />
+                   </svg>
+                   Active
+                  </div>
                </td>
               </tr>
-              <tr>
+              <!-- <tr>
                <td>
                 <input type="checkbox" id="row3" class="table-row">
                 <span class="time is-wait">17.00</span>
@@ -391,7 +390,7 @@
                  Active
                 </div>
                </td>
-              </tr>
+              </tr> -->
              </tbody>
             </table>
            </div>
@@ -399,36 +398,26 @@
           
           <div class="card transection" style="--delay: 1.2s">
            <div class="transection-header">
-            <div class="head">Transactions</div>
-            <div class="head is-wait">View All</div>
+            <div class="head">Stock-Holders</div>
+            <div class="head is-wait">Amount</div>
            </div>
            <div class="credit-wrapper">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 291.764 291.764"  style="background-color:#292c6d">
-         <g xmlns="http://www.w3.org/2000/svg">
-           <path d="M119.259 100.23l-14.643 91.122h23.405l14.634-91.122h-23.396zm70.598 37.118c-8.179-4.039-13.193-6.765-13.193-10.896.1-3.756 4.24-7.604 13.485-7.604 7.604-.191 13.193 1.596 17.433 3.374l2.124.948 3.182-19.065c-4.623-1.787-11.953-3.756-21.007-3.756-23.113 0-39.388 12.017-39.489 29.204-.191 12.683 11.652 19.721 20.515 23.943 9.054 4.331 12.136 7.139 12.136 10.987-.1 5.908-7.321 8.634-14.059 8.634-9.336 0-14.351-1.404-21.964-4.696l-3.082-1.404-3.273 19.813c5.498 2.444 15.609 4.595 26.104 4.705 24.563 0 40.546-11.835 40.747-30.152.08-10.048-6.165-17.744-19.659-24.035zm83.034-36.836h-18.108c-5.58 0-9.82 1.605-12.236 7.331l-34.766 83.509h24.563l6.765-18.08h27.481l3.51 18.153h21.664l-18.873-90.913zm-26.97 54.514c.474.046 9.428-29.514 9.428-29.514l7.13 29.514h-16.558zM85.059 100.23l-22.931 61.909-2.498-12.209c-4.24-14.087-17.533-29.395-32.368-36.999l20.998 78.33h24.764l36.799-91.021H85.059v-.01z" fill="#fff" data-original="#2394bc"/>
-           <path d="M51.916 111.982c-1.787-6.948-7.486-11.634-15.226-11.734H.374L0 101.934c28.329 6.984 52.107 28.474 59.821 48.688l-7.905-38.64z" fill="#fffffe" data-original="#efc75e"/>
-         </g>
-       </svg>
+            <svg style="color: white" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person" viewBox="0 0 16 16"> <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z" fill="white"></path> </svg>
             <div class="credit-name">
-             <div class="credit-type">Visa</div>
-             <div class="credit-status">Payment Received</div>
+             <div class="credit-type"><%=students[0].name%></div>
+             <div class="credit-status"><%=students[0].email%></div>
             </div>
-            <div class="credit-money is-active">+$3.945</div>
+            <div class="credit-money is-active">&#8377;<%=students[0].amount%></div>
            </div>
            <div class="credit-wrapper">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" style="background-color:#1f2755">
-         <path xmlns="http://www.w3.org/2000/svg" d="M488.727 66.494H23.273C10.42 66.494 0 76.914 0 89.767v332.466c0 12.853 10.42 23.273 23.273 23.273h465.454c12.853 0 23.273-10.42 23.273-23.273V89.767c0-12.853-10.42-23.273-23.273-23.273z" fill="#1f2755" data-original="#5286f9"/>
-         <path xmlns="http://www.w3.org/2000/svg" d="M273.776 189.773c5.115 5.86 9.57 12.31 13.236 19.242 7.427 14.041 11.655 30.026 11.655 46.986s-4.228 32.943-11.655 46.986c-3.666 6.932-8.121 13.38-13.236 19.24-5.264 6.031-11.23 11.427-17.776 16.069 16.454 11.664 36.523 18.553 58.182 18.553 55.608 0 100.849-45.241 100.849-100.848S369.79 155.152 314.182 155.152c-21.659 0-41.728 6.886-58.182 18.553 6.544 4.642 12.51 10.039 17.776 16.068z" fill="#f0425c" data-original="#ffb655"/>
-         <path xmlns="http://www.w3.org/2000/svg" d="M287.012 209.016c-3.666-6.934-8.121-13.382-13.236-19.242-5.267-6.031-11.231-11.425-17.776-16.066-16.452-11.667-36.523-18.553-58.182-18.553-55.608 0-100.848 45.241-100.848 100.848s45.241 100.848 100.848 100.848c21.659 0 41.73-6.887 58.182-18.553 6.546-4.641 12.51-10.038 17.776-16.067 5.115-5.86 9.57-12.31 13.236-19.24 7.427-14.043 11.655-30.028 11.655-46.986 0-16.964-4.228-32.948-11.655-46.989z" fill="#ef8641" data-original="#d8143a"/>
-         <path xmlns="http://www.w3.org/2000/svg" d="M197.818 356.851c-55.608 0-100.848-45.241-100.848-100.848s45.241-100.848 100.848-100.848c21.659 0 41.728 6.886 58.182 18.553V66.494H23.273C10.42 66.494 0 76.914 0 89.767v332.466c0 12.853 10.42 23.273 23.273 23.273H256v-107.21c-16.454 11.666-36.523 18.555-58.182 18.555z" fill="#1f2755" data-original="#3d6deb"/>
-       </svg>
+            <svg style="color: white" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person" viewBox="0 0 16 16"> <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z" fill="white"></path> </svg>
             <div class="credit-name">
-             <div class="credit-type">MasterCard</div>
-             <div class="credit-status">Account Deposit</div>
+             <div class="credit-type"><%=students[1].name%></div>
+             <div class="credit-status"><%=students[1].email%></div>
             </div>
-            <div class="credit-money is-active">+$3.00</div>
+            <div class="credit-money is-active">&#8377;<%=students[1].amount%></div>
            </div>
-           <div class="credit-wrapper">
+           <!-- <div class="credit-wrapper">
             <svg viewBox="0 0 504 504" style="background-color: #046fcf">
          <path xmlns="http://www.w3.org/2000/svg" fill="#fff" data-original="#2fabf7" d="M43.2 207.6h17.6L52 185.2z"/>
          <path xmlns="http://www.w3.org/2000/svg" d="M261.6 188.4c-1.6-.8-4-.8-6.4-.8h-16v12.8h16c2.4 0 4.8 0 6.4-.8s2.4-3.2 2.4-5.6c.8-3.2-.8-4.8-2.4-5.6z" fill="#fff" data-original="#228fe0"/>
@@ -485,7 +474,7 @@
             <div class="credit-money is-cancel">+$3.945</div>
            </div>
           </div>
-         </div>
+         </div> -->
         </div>
     
 </body>
