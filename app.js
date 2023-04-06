@@ -15,6 +15,7 @@ const admin = require("./admin/admin");
 const console = require("console");
 const MONGODB_URI = process.env.MONGODB_URI;
 const cors = require("cors");
+const session = require("express-session");
 
 const stockPrice = () => {
   const date = new Date();
@@ -72,14 +73,56 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 
+const sessionConfig = {
+  secret: "thisshouldbeabettersecret!",
+  resave: false,
+  saveUninitialized: true,
+  cookie: {
+    httpOnly: true,
+    expires: Date.now() + 1000 * 60 * 60 * 24 * 7,
+    maxAge: 1000 * 60 * 60 * 24 * 7,
+  },
+};
+
+app.use(session(sessionConfig));
+
+//admin routes
+
 app.use("/Matcom@Stock123456Admin", admin);
+
+//login routes
 app.get("/login", (req, res) => {
+  console.log(req.session);
   res.render("login2");
 });
+
+app.post(
+  "/login2",
+
+  login.UserLogin
+);
+
+//register routes
 app.get("/register", (req, res) => {
   res.render("login");
 });
+app.post(
+  "/login",
 
+  login.UserRegister
+);
+
+//user-profile route
+app.get("/profile", stock.profile);
+
+//stock-list route
+app.get("/stock-list", stock.stockDataFront);
+
+//individual stocks route
+
+app.get("/stock/:stockid", stock.stockSingle);
+
+//stocks api
 app.get("/stock-api", async (req, res) => {
   await Stock.find({ stockNum: parseInt(req.query.num) })
     .then((result) => {
@@ -93,32 +136,10 @@ app.get("/stock-api", async (req, res) => {
       console.log(err);
     });
 });
-// app.get("/test", stock.makeStock);
-app.get("/test", stock.stockDataFront);
+
+//buy-sell logic
 app.post("/test", userStock.buy);
 app.post("/test2", userStock.sell);
-app.get("/getstocks", async (req, res) => {
-  await Stock.find()
-    .then((result) => {
-      console.log(result);
-      res.render("stock-view", { data: result });
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-});
-app.post(
-  "/login",
-
-  login.UserRegister
-);
-app.post(
-  "/login2",
-
-  login.UserLogin
-);
-
-//stocks api
 
 app.all("*", (req, res, next) => {
   next(res.render("test"));

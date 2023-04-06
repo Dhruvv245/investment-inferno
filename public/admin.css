@@ -610,7 +610,7 @@ body {
 .account-profile .blob {
   position: absolute;
   border-radius: 50%;
-  animation: fly 5.8s linear infinite alternate;
+  animation: fly 10.8s linear infinite alternate;
 }
 .account-profile .blob:nth-child(1) {
   width: 14px;
@@ -618,7 +618,7 @@ body {
   top: 25px;
   left: -20px;
   background: #28327a;
-  animation-delay: 0.9s;
+  animation-delay: 2s;
 }
 .account-profile .blob:nth-child(2) {
   width: 18px;

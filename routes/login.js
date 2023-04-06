@@ -2,6 +2,11 @@ const bcrypt = require("bcrypt");
 const Student = require("../models/student");
 const nodemailer = require("nodemailer");
 
+if (typeof localStorage === "undefined" || localStorage === null) {
+  var LocalStorage = require("node-localstorage").LocalStorage;
+  localStorage = new LocalStorage("./scratch");
+}
+
 const transporter = nodemailer.createTransport({
   service: "gmail",
   auth: {
@@ -92,9 +97,9 @@ module.exports.UserLogin = async (req, res, next) => {
             .status(401)
             .send({ message: "Invalid password or Password" });
         } else {
-          console.log("here");
-          res.status(200).send({ message: "success", data: result });
-          next();
+          console.log(req.session.id);
+          req.session.StudentId = result.id;
+          res.redirect("/profile");
         }
       })
       .catch((err) => {

@@ -1,4 +1,10 @@
 const Stock = require("../models/stock");
+if (typeof localStorage === "undefined" || localStorage === null) {
+  var LocalStorage = require("node-localstorage").LocalStorage;
+  localStorage = new LocalStorage("./scratch");
+}
+
+const Student = require("../models/student");
 
 module.exports.makeStock = async (req, res, next) => {
   await new Stock({
@@ -40,4 +46,23 @@ module.exports.stockDataFront = async (req, res, next) => {
   const data = await Stock.find();
   console.log(data);
   res.render("stock-view", { data: data });
+};
+
+module.exports.profile = async (req, res) => {
+  const user = req.session.StudentId;
+
+  const student = await Student.findById(user);
+
+  if (student) {
+    const stocks = student.userStock.stocks.length;
+    pl = Math.sqrt((student.amount - 10000) * (student.amount - 10000)) / 100;
+    res.render("profile", { data: student, pl: pl, stocks: stocks });
+  } else {
+    res.redirect("login");
+  }
+};
+
+module.exports.stockSingle = async (req, res, next) => {
+  console.log(req.params);
+  res.render("individual-stock");
 };
