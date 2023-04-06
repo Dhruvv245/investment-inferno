@@ -47,7 +47,7 @@ router
       { price: req.body.price }
     )
       .then((result) => {
-        res.redirect("/Matcom@Stock123456Admin/test3");
+        res.redirect("/Matcom@Stock123456Admin/test");
       })
       .catch((err) => {
         console.log(err);
