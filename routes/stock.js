@@ -43,9 +43,14 @@ module.exports.stockData = async (req, res, next, check) => {
 };
 
 module.exports.stockDataFront = async (req, res, next) => {
-  const data = await Stock.find();
-  console.log(data);
-  res.render("stock-view", { data: data });
+  const user = req.session.StudentId;
+  if (user) {
+    const data = await Stock.find();
+    console.log(data);
+    res.render("stock-view", { data: data });
+  } else {
+    res.redirect("login");
+  }
 };
 
 module.exports.profile = async (req, res) => {
