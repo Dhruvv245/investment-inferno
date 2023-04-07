@@ -122,6 +122,10 @@ app.get("/stock-list", stock.stockDataFront);
 
 app.get("/stock/:stockid", stock.stockSingle);
 
+//buy-sell logic
+app.post("/stock/:stockid", userStock.buy);
+app.post("/stock/:stockid", userStock.sell);
+
 //leaderboard route
 
 app.get("/leaderBoard", stock.leader);
@@ -140,10 +144,6 @@ app.get("/stock-api", async (req, res) => {
       console.log(err);
     });
 });
-
-//buy-sell logic
-app.post("/test", userStock.buy);
-app.post("/test2", userStock.sell);
 
 app.all("*", (req, res, next) => {
   next(res.render("test"));

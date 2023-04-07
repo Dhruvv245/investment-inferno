@@ -13,12 +13,17 @@ const StudentSchema = new Schema({
   userStock: {
     stocks: [
       {
-        stockid: { type: Schema.Types.ObjectId, ref: "Stock" },
+        stockid: {
+          type: Schema.Types.ObjectId,
+          ref: "Stock",
+          autopopulate: true,
+        },
         quantity: { type: Number },
       },
     ],
   },
 });
+StudentSchema.plugin(require("mongoose-autopopulate"));
 
 StudentSchema.methods.buyStock = function (stock, quan, amount) {
   console.log("hit");

@@ -49,7 +49,7 @@ module.exports.stockDataFront = async (req, res, next) => {
   if (user) {
     const currentDate = date.format("dddd, MMMM Do YYYY");
     const data = await Stock.find();
-    console.log(data);
+
     res.render("stock-view", { data: data, date: currentDate });
   } else {
     res.redirect("login");
@@ -63,25 +63,37 @@ module.exports.profile = async (req, res) => {
 
   if (student) {
     const stocks = student.userStock.stocks.length;
+    const stock = student.userStock.stocks;
+
+    // let newStocks = new Array();
+
+    // stock.map(async (stock, index) => {
+    //   let data = await Stock.findById(stock.stockid);
+    // });
+
     pl = Math.sqrt((student.amount - 10000) * (student.amount - 10000)) / 100;
-    res.render("profile", { data: student, pl: pl, stocks: stocks });
+    res.render("profile", {
+      data: student,
+      pl: pl,
+      stocks: stocks,
+      datas: stock,
+    });
   } else {
     res.redirect("login");
   }
 };
 
 module.exports.stockSingle = async (req, res, next) => {
-  // const user = req.session.StudentId;
-  // if (user) {
-  const currentDate = date.format("dddd, MMMM Do YYYY");
+  const user = req.session.StudentId;
+  if (user) {
+    const currentDate = date.format("dddd, MMMM Do YYYY");
 
-  console.log(req.params.stockid);
-  const stock = await Stock.find({ stockNum: req.params.stockid });
-  console.log(stock[0]);
-  res.render("individual-stock", { date: currentDate, data: stock[0] });
-  // } else {
-  //   res.redirect("/login");
-  // }
+    const stock = await Stock.find({ stockNum: req.params.stockid });
+
+    res.render("individual-stock", { date: currentDate, data: stock[0] });
+  } else {
+    res.redirect("/login");
+  }
 };
 
 module.exports.leader = async (req, res, next) => {
