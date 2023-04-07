@@ -30,7 +30,7 @@ router
       })
       .catch((err) => {
         console.log(err);
-        res.redirect("/Matcom@Stock123456Admin/test2");
+        res.status(201).send({ message: err });
       });
   });
 
@@ -50,7 +50,30 @@ router
         res.redirect("/Matcom@Stock123456Admin/test");
       })
       .catch((err) => {
-        console.log(err);
+        res.status(201).send({ message: err });
+      });
+  });
+
+router
+  .route("/test4")
+  .get(async (req, res, next) => {
+    console.log(req.body);
+
+    res.render("createMessage");
+  })
+  .post(async (req, res, next) => {
+    console.log(req.body);
+    const stockNum = req.body.stockNum;
+    const filter = { stockNum: stockNum };
+    const update = { message: req.body.message };
+    await Stock.findOneAndUpdate(filter, update, {
+      new: true,
+    })
+      .then((result) => {
+        res.redirect("/Matcom@Stock123456Admin/test");
+      })
+      .catch((err) => {
+        res.status(201).send({ message: err });
       });
   });
 

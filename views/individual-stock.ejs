@@ -21,8 +21,11 @@
       <hr>
       <div>
         <h1>A Stock a Day, Keeps Bankruptcy away!</h1>
-        <p>Keep Looking for news on this stock here </p>
-       
+        <%if(data.message)  {%>
+        <h3><%=data.message%></h3>
+        <% }else{%>
+          <h3>KEEP LOOKING FOR UPDATES ON THIS STOCK HERE</h3>
+          <% }%>
       </div>
       <hr>
       <h2>Current Price:-<br/> <div id="price"> <%=data.price%></div> </h2>
