@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <title>BSC Stock Exchange</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
-<link rel="stylesheet" href="stock-view.css">
+<link rel="stylesheet" href="/stock-view.css">
 
 </head>
 <body>
@@ -13,12 +13,12 @@
   <div class="app-header">
     <div class="app-header-left">
       <span class="app-icon"></span>
-      <p class="app-name">BSC Stock Exchange</p>
+      <p class="app-name">Stock Exchange</p>
       <div class="navbar">
         <div class="middle">
             <span class="mid1"><a href="/profile" class="nub">HOME</a></span>
-          
-            <span class="mid3"><a href="#" class="nub">LEADERBOARD</a></span>
+           
+            <span class="mid3"><a href="/leaderBoard" class="nub">LEADERBOARD</a></span>
         </div>
     </div>
     </div>
@@ -60,17 +60,17 @@
     <div class="projects-section">
       <div class="projects-section-header">
         <p>Portfolio</p>
-        <p class="time">11 March</p>
+        <p class="time"><%=date%> </p>
       </div>
       <div class="projects-section-line">
         <div class="projects-status">
           <div class="item-status">
             <span class="status-number">10</span>
-            <span class="status-type">Invested</span>
+            <span class="status-type">Stocks</span>
           </div>
           <div class="item-status">
             <span class="status-number">20</span>
-            <span class="status-type">Total</span>
+            <span class="status-type">Participants</span>
           </div>
         </div>
         <div class="view-actions">
@@ -91,39 +91,300 @@
               <rect x="3" y="14" width="7" height="7" /></svg>
           </button>
         </div>
-      </div>
+      </div>``
       <div class="project-boxes jsGridView">
-        <div class="project-box-wrapper">
+       
+        <div class="project-box-wrapper" >
+          <a href = "/stock/<%=data[2].stockNum%>" >
           <div class="project-box" style="background-color: #fee4cb;">
             <div class="project-box-header">
-              <span>11 March 2023</span>
+              <span>Bank</span>
+              <div class="more-wrapper">
+                <button class="project-btn-more">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-vertical">
+                    <circle cx="12" cy="12" r="1" />
+                    <circle cx="12" cy="5" r="1" />
+                    <circle cx="12" cy="19" r="1" /></svg>
+                </button>
+              </div>
         </div>
         <div class="project-box-content-header">
-          <p class="box-content-header">Stock 1</p>
-          <p class="box-content-subheader">Prototyping</p>
+        <p class="box-content-header">UEPD</p><p style="font-size: 10px;">(Unemployed EngineerPaisa Double Bank)</p>
         </div>
         <div class="box-progress-wrapper">
-          <p class="box-progress-header">Progress</p>
+          <p class="box-progress-header">Amount</p>
           <div class="box-progress-bar">
-            <span class="box-progress" style="width: 60%; background-color: #ff942e"></span>
+            <span class="box-progress" style="width: 1.91%; background-color: #ff942e"></span>
           </div>
-          <p class="box-progress-percentage">60%</p>
+          <p class="box-progress-percentage"> &#8377; <%=data[2].price%></p>
         </div>
         <div class="project-box-footer">
-          <div class="participants">
-            <button class="add-participant" style="color: #ff942e;">
-              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus">
-                <path d="M12 5v14M5 12h14" />
-              </svg>
-            </button>
-          </div>
           <div class="days-left" style="color: #ff942e;">
-            2 Days Left
+            Money for the penny less.
           </div>
         </div>
       </div>
     </div>
+  </a>
     <div class="project-box-wrapper">
+      <a href = "/stock/<%=data[3].stockNum%>" >
+      <div class="project-box" style="background-color: #e9e7fd;">
+        <div class="project-box-header">
+          <span>Auto</span>
+          <div class="more-wrapper">
+            <button class="project-btn-more">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-vertical">
+                <circle cx="12" cy="12" r="1" />
+                <circle cx="12" cy="5" r="1" />
+                <circle cx="12" cy="19" r="1" /></svg>
+            </button>
+          </div>
+        </div>
+        <div class="project-box-content-header">
+          <p class="box-content-header">Aarti Motors</p>
+          <p style="font-size: 10px; color: #e9e7fd;">.</p>
+        </div>
+        <div class="box-progress-wrapper">
+          <p class="box-progress-header">Amount</p>
+          <div class="box-progress-bar">
+            <span class="box-progress" style="width: 18.18%; background-color: #4f3ff0"></span>
+          </div>
+          <p class="box-progress-percentage">&#8377; <%=data[3].price%></p>
+        </div>
+        <div class="project-box-footer">
+          <div class="days-left" style="color: #4f3ff0;">
+            Carrying Engineers Forward.
+          </div>
+        </div>
+      </div>
+    </a>
+    </div>
+    <div class="project-box-wrapper">
+      <a href = "/stock/<%=data[4].stockNum%>">
+      <div class="project-box" style="background-color: #e9e7fd;">
+        <div class="project-box-header">
+          <span>FMCG</span>
+          <div class="more-wrapper">
+            <button class="project-btn-more">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-vertical">
+                <circle cx="12" cy="12" r="1" />
+                <circle cx="12" cy="5" r="1" />
+                <circle cx="12" cy="19" r="1" /></svg>
+            </button>
+          </div>
+        </div>
+        <div class="project-box-content-header">
+          <p class="box-content-header">YTC</p><p style="font-size: 10px;">(Your True Cure🙂)</p>
+        </div>
+        <div class="box-progress-wrapper">
+          <p class="box-progress-header">Amount</p>
+          <div class="box-progress-bar">
+            <span class="box-progress" style="width: 50%; background-color: #4f3ff0"></span>
+          </div>
+          <p class="box-progress-percentage">&#8377; <%=data[4].price%></p>
+        </div>
+        <div class="project-box-footer">
+          <div class="days-left" style="color: #4f3ff0;">
+            Taking the world to new heights.
+          </div>
+        </div>
+       </a>
+      </div>
+    </div>
+    <div class="project-box-wrapper">
+      <a href = "/stock/<%=data[5].stockNum%>">
+      <div class="project-box">
+        <div class="project-box-header">
+          <span>IT</span>
+          <div class="more-wrapper">
+            <button class="project-btn-more">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-vertical">
+                <circle cx="12" cy="12" r="1" />
+                <circle cx="12" cy="5" r="1" />
+                <circle cx="12" cy="19" r="1" /></svg>
+            </button>
+          </div>
+        </div>
+        <div class="project-box-content-header">
+          <p class="box-content-header">Nanosoft</p>
+        </div>
+        <div class="box-progress-wrapper">
+          <p class="box-progress-header">Amount</p>
+          <div class="box-progress-bar">
+            <span class="box-progress" style="width: 80%; background-color: #096c86"></span>
+          </div>
+          <p class="box-progress-percentage">&#8377; <%=data[5].price%></p>
+        </div>
+        <div class="project-box-footer">
+          <div class="days-left" style="color: #096c86;">
+            Your data is always safe with us.
+          </div>
+        </div>
+      </div>
+    </a>
+    </div>
+    <div class="project-box-wrapper">
+      <a href = "/stock/<%=data[6].stockNum%>">
+      <div class="project-box" style="background-color: #ffd3e2;">
+        <div class="project-box-header">
+          <span>Pharma</span>
+          <div class="more-wrapper">
+            <button class="project-btn-more">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-vertical">
+                <circle cx="12" cy="12" r="1" />
+                <circle cx="12" cy="5" r="1" />
+                <circle cx="12" cy="19" r="1" /></svg>
+            </button>
+          </div>
+        </div>
+        <div class="project-box-content-header">
+          <p class="box-content-header">Devil Labs</p>
+        </div>
+        <div class="box-progress-wrapper">
+          <p class="box-progress-header">Amount</p>
+          <div class="box-progress-bar">
+            <span class="box-progress" style="width: 20%; background-color: #df3670"></span>
+          </div>
+          <p class="box-progress-percentage">&#8377; <%=data[6].price%></p>
+        </div>
+        <div class="project-box-footer">
+          <div class="days-left" style="color: #df3670;">
+            Steals your life from the devil.
+          </div>
+        </div>
+      </div>
+    </a>
+    </div>
+    <div class="project-box-wrapper">
+      <a href = "/stock/<%=data[7].stockNum%>">
+      <div class="project-box" style="background-color: #c8f7dc;">
+        <div class="project-box-header">
+          <span>Social Media</span>
+          <div class="more-wrapper">
+            <button class="project-btn-more">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-vertical">
+                <circle cx="12" cy="12" r="1" />
+                <circle cx="12" cy="5" r="1" />
+                <circle cx="12" cy="19" r="1" /></svg>
+            </button>
+          </div>
+        </div>
+        <div class="project-box-content-header">
+          <p class="box-content-header">Getflix</p>
+        </div>
+        <div class="box-progress-wrapper">
+          <p class="box-progress-header">Amount</p>
+          <div class="box-progress-bar">
+            <span class="box-progress" style="width: 60%; background-color: #34c471"></span>
+          </div>
+          <p class="box-progress-percentage">&#8377; <%=data[7].price%></p>
+        </div>
+        <div class="project-box-footer">
+          <div class="days-left" style="color: #34c471;">
+            Get your net and chill.
+          </div>
+        </div>
+      </div>
+    </a>
+    </div>
+    <div class="project-box-wrapper">
+      <a href = "/stock/<%=data[8].stockNum%>">
+      <div class="project-box" style="background-color: #d5deff;">
+        <div class="project-box-header">
+          <span>Feeder Industry</span>
+          <div class="more-wrapper">
+            <button class="project-btn-more">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-vertical">
+                <circle cx="12" cy="12" r="1" />
+                <circle cx="12" cy="5" r="1" />
+                <circle cx="12" cy="19" r="1" /></svg>
+            </button>
+          </div>
+        </div>
+        <div class="project-box-content-header">
+          <p class="box-content-header">AATA Steel</p> 
+        </div>
+        <div class="box-progress-wrapper">
+          <p class="box-progress-header">Amount</p>
+          <div class="box-progress-bar">
+            <span class="box-progress" style="width: 40%; background-color: #4067f9"></span>
+          </div>
+          <p class="box-progress-percentage">&#8377; <%=data[8].price%></p>
+        </div>
+        <div class="project-box-footer">
+          <div class="days-left" style="color: #4067f9;">
+            Steel need not be hard.
+          </div>
+        </div>
+      </div>
+    </a>
+    </div>
+    <div class="project-box-wrapper">
+      <a href = "/stock/<%=data[9].stockNum%>">
+      <div class="project-box">
+        <div class="project-box-header">
+          <span>Conglomerate</span>
+          <div class="more-wrapper">
+            <button class="project-btn-more">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-vertical">
+                <circle cx="12" cy="12" r="1" />
+                <circle cx="12" cy="5" r="1" />
+                <circle cx="12" cy="19" r="1" /></svg>
+            </button>
+          </div>
+        </div>
+        <div class="project-box-content-header">
+          <p class="box-content-header">Freeliance</p>
+        </div>
+        <div class="box-progress-wrapper">
+          <p class="box-progress-header">Amount</p>
+          <div class="box-progress-bar">
+            <span class="box-progress" style="width: 80%; background-color: #096c86"></span>
+          </div>
+          <p class="box-progress-percentage">&#8377; <%=data[9].price%></p>
+        </div>
+        <div class="project-box-footer">
+          <div class="days-left" style="color: #096c86;">
+            We just do everything.
+          </div>
+        </div>
+      </div>
+    </a>
+    </div>
+    <div class="project-box-wrapper">
+      <a href = "/stock/<%=data[11].stockNum%>">
+      <div class="project-box" style="background-color: #d5deff;">
+        <div class="project-box-header">
+          <span><%=date%> </span>
+          <div class="more-wrapper">
+            <button class="project-btn-more">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-vertical">
+                <circle cx="12" cy="12" r="1" />
+                <circle cx="12" cy="5" r="1" />
+                <circle cx="12" cy="19" r="1" /></svg>
+            </button>
+          </div>
+        </div>
+        <div class="project-box-content-header">
+          <p class="box-content-header">Badani</p>
+        </div>
+        <div class="box-progress-wrapper">
+          <p class="box-progress-header">Amount</p>
+          <div class="box-progress-bar">
+            <span class="box-progress" style="width: 40%; background-color: #4067f9"></span>
+          </div>
+          <p class="box-progress-percentage">&#8377; <%=data[11].price%></p>
+        </div>
+        <div class="project-box-footer">
+          <div class="days-left" style="color: #4067f9;">
+            Thinking small, doing worse
+          </div>
+        </div>
+      </div>
+    </a>
+    </div>
+    <div class="project-box-wrapper">
+      <a href = "/stock/<%=data[10].stockNum%>">
       <div class="project-box" style="background-color: #e9e7fd;">
         <div class="project-box-header">
           <span>11 March 2023</span>
@@ -137,192 +398,33 @@
           </div>
         </div>
         <div class="project-box-content-header">
-          <p class="box-content-header">Stock 2</p>
-          <p class="box-content-subheader">Prototyping</p>
+          <p class="box-content-header">Tytan inc.</p>
         </div>
         <div class="box-progress-wrapper">
-          <p class="box-progress-header">Progress</p>
+          <p class="box-progress-header">Amount</p>
           <div class="box-progress-bar">
             <span class="box-progress" style="width: 50%; background-color: #4f3ff0"></span>
           </div>
-          <p class="box-progress-percentage">50%</p>
+          <p class="box-progress-percentage">&#8377; <%=data[10].price%></p>
         </div>
         <div class="project-box-footer">
-          <div class="participants">
-            <button class="add-participant" style="color: #4f3ff0;">
-              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus">
-                <path d="M12 5v14M5 12h14" />
-              </svg>
-            </button>
-          </div>
           <div class="days-left" style="color: #4f3ff0;">
-            2 Days Left
+            Pay for airlines because ships <br> do actually sink.
           </div>
         </div>
       </div>
-    </div>
-    <div class="project-box-wrapper">
-      <div class="project-box">
-        <div class="project-box-header">
-          <span>11 March 2023</span>
-          <div class="more-wrapper">
-            <button class="project-btn-more">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-vertical">
-                <circle cx="12" cy="12" r="1" />
-                <circle cx="12" cy="5" r="1" />
-                <circle cx="12" cy="19" r="1" /></svg>
-            </button>
-          </div>
-        </div>
-        <div class="project-box-content-header">
-          <p class="box-content-header">Stock 3</p>
-          <p class="box-content-subheader">Prototyping</p>
-        </div>
-        <div class="box-progress-wrapper">
-          <p class="box-progress-header">Progress</p>
-          <div class="box-progress-bar">
-            <span class="box-progress" style="width: 80%; background-color: #096c86"></span>
-          </div>
-          <p class="box-progress-percentage">80%</p>
-        </div>
-        <div class="project-box-footer">
-          <div class="participants">
-            <button class="add-participant" style="color: #096c86;">
-              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus">
-                <path d="M12 5v14M5 12h14" />
-              </svg>
-            </button>
-          </div>
-          <div class="days-left" style="color: #096c86;">
-            2 Days Left
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="project-box-wrapper">
-      <div class="project-box" style="background-color: #ffd3e2;">
-        <div class="project-box-header">
-          <span>11 March 2023</span>
-          <div class="more-wrapper">
-            <button class="project-btn-more">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-vertical">
-                <circle cx="12" cy="12" r="1" />
-                <circle cx="12" cy="5" r="1" />
-                <circle cx="12" cy="19" r="1" /></svg>
-            </button>
-          </div>
-        </div>
-        <div class="project-box-content-header">
-          <p class="box-content-header">Stock 4</p>
-          <p class="box-content-subheader">Prototyping</p>
-        </div>
-        <div class="box-progress-wrapper">
-          <p class="box-progress-header">Progress</p>
-          <div class="box-progress-bar">
-            <span class="box-progress" style="width: 20%; background-color: #df3670"></span>
-          </div>
-          <p class="box-progress-percentage">20%</p>
-        </div>
-        <div class="project-box-footer">
-          <div class="participants">
-            <button class="add-participant" style="color: #df3670;">
-              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus">
-                <path d="M12 5v14M5 12h14" />
-              </svg>
-            </button>
-          </div>
-          <div class="days-left" style="color: #df3670;">
-            2 Days Left
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="project-box-wrapper">
-      <div class="project-box" style="background-color: #c8f7dc;">
-        <div class="project-box-header">
-          <span>11 March 2023</span>
-          <div class="more-wrapper">
-            <button class="project-btn-more">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-vertical">
-                <circle cx="12" cy="12" r="1" />
-                <circle cx="12" cy="5" r="1" />
-                <circle cx="12" cy="19" r="1" /></svg>
-            </button>
-          </div>
-        </div>
-        <div class="project-box-content-header">
-          <p class="box-content-header">Stock 5</p>
-          <p class="box-content-subheader">Prototyping</p>
-        </div>
-        <div class="box-progress-wrapper">
-          <p class="box-progress-header">Progress</p>
-          <div class="box-progress-bar">
-            <span class="box-progress" style="width: 60%; background-color: #34c471"></span>
-          </div>
-          <p class="box-progress-percentage">60%</p>
-        </div>
-        <div class="project-box-footer">
-          <div class="participants">
-            <button class="add-participant" style="color: #34c471;">
-              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus">
-                <path d="M12 5v14M5 12h14" />
-              </svg>
-            </button>
-          </div>
-          <div class="days-left" style="color: #34c471;">
-            2 Days Left
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="project-box-wrapper">
-      <div class="project-box" style="background-color: #d5deff;">
-        <div class="project-box-header">
-          <span>11 March 2023 </span>
-          <div class="more-wrapper">
-            <button class="project-btn-more">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-vertical">
-                <circle cx="12" cy="12" r="1" />
-                <circle cx="12" cy="5" r="1" />
-                <circle cx="12" cy="19" r="1" /></svg>
-            </button>
-          </div>
-        </div>
-        <div class="project-box-content-header">
-          <p class="box-content-header">Stock 6</p>
-          <p class="box-content-subheader">Prototyping</p>
-        </div>
-        <div class="box-progress-wrapper">
-          <p class="box-progress-header">Progress</p>
-          <div class="box-progress-bar">
-            <span class="box-progress" style="width: 40%; background-color: #4067f9"></span>
-          </div>
-          <p class="box-progress-percentage">40%</p>
-        </div>
-        <div class="project-box-footer">
-          <div class="participants">
-            <button class="add-participant" style="color: #4067f9;">
-              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus">
-                <path d="M12 5v14M5 12h14" />
-              </svg>
-            </button>
-          </div>
-          <div class="days-left" style="color: #4067f9;">
-            2 Days Left
-          </div>
-        </div>
-      </div>
+    </a>
     </div>
   </div>
 </div>
-<div class="messages-section">
+<!-- <div class="messages-section">
   <div class="projects-section-header">
     <p>LEADERBOARD</p>
 </div>
-</div>
+</div> -->
 
 
-<script  src="stock-view.js"></script>
+<script  src="/stock-view.js"></script>
 
 </body>
 </html>

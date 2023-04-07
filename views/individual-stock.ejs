@@ -4,67 +4,72 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="individual.css" />
+    <link rel="stylesheet" href="/individual.css" />
     <title>Stock</title>
   </head>
   <body>
-    <div class="blog-slider">
-      <div class="blog-slider__wrp swiper-wrapper">
-        <div class="blog-slider__item swiper-slide">
-          <div class="blog-slider__img">
-            <img
-              src="https://res.cloudinary.com/muhammederdem/image/upload/q_60/v1535759872/kuldar-kalvik-799168-unsplash.webp"
-              alt=""
-            />
-          </div>
-          <div class="blog-slider__content">
-            <span class="blog-slider__code">26 December 2019</span>
-            <div class="blog-slider__title">Lorem Ipsum Dolor</div>
-            <div class="blog-slider__text">
-              Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-              Recusandae voluptate repellendus magni illo ea animi?
-            </div>
-            <a href="#" class="blog-slider__button">READ MORE</a>
-          </div>
-        </div>
-        <div class="blog-slider__item swiper-slide">
-          <div class="blog-slider__img">
-            <img
-              src="https://res.cloudinary.com/muhammederdem/image/upload/q_60/v1535759871/jason-leung-798979-unsplash.webp"
-              alt=""
-            />
-          </div>
-          <div class="blog-slider__content">
-            <span class="blog-slider__code">26 December 2019</span>
-            <div class="blog-slider__title">Lorem Ipsum Dolor2</div>
-            <div class="blog-slider__text">
-              Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-              Recusandae voluptate repellendus magni illo ea animi?
-            </div>
-            <a href="#" class="blog-slider__button">READ MORE</a>
-          </div>
-        </div>
-
-        <div class="blog-slider__item swiper-slide">
-          <div class="blog-slider__img">
-            <img
-              src="https://res.cloudinary.com/muhammederdem/image/upload/q_60/v1535759871/alessandro-capuzzi-799180-unsplash.webp"
-              alt=""
-            />
-          </div>
-          <div class="blog-slider__content">
-            <span class="blog-slider__code">26 December 2019</span>
-            <div class="blog-slider__title">Lorem Ipsum Dolor</div>
-            <div class="blog-slider__text">
-              Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-              Recusandae voluptate repellendus magni illo ea animi?
-            </div>
-            <a href="#" class="blog-slider__button">READ MORE</a>
-          </div>
-        </div>
+    <div class="title">MATCOM Times</div>
+    <div class="date"><%=date%></div>
+    
+    <div class="columns">
+      <div>
+        <h1><%=data.name%></h1>
+        <p><%=data.description%></p>
+      
+        <img src="/logo.png">
       </div>
-      <div class="blog-slider__pagination"></div>
+      <hr>
+      <div>
+        <h1>A Stock a Day, Keeps Bankruptcy away!</h1>
+        <p>Keep Looking for news on this stock here </p>
+       
+      </div>
+      <hr>
+      <h2>Current Price:-<br/> <div id="price"> <%=data.price%></div> </h2>
+      <hr>
+    
+      <div class="date">
+        
+        <form action="/" method="POST">
+          <div class="group">
+            <input type="number" name="quantity" id="quantity" /><span
+              class="highlight"
+            ></span
+            ><span class="bar"></span>
+            <label>Quantity</label>
+          </div>
+      
+          <button type="submit" class="button buttonBlue">
+           BUY
+            <div class="ripples buttonRipples">
+              <span class="ripplesCircle"></span>
+            </div>
+          </button>
+        </form>
+      </div>
+      <br/>
+      <div class="date">
+        <form action="/" method="POST">
+          <div class="group">
+            <input type="number" name="quantity" id="quantity" /><span
+              class="highlight"
+            ></span
+            ><span class="bar"></span>
+            <label>Quantity</label>
+          </div>
+         
+          <button type="submit" class="button buttonBlue">
+            SELL
+            <div class="ripples buttonRipples">
+              <span class="ripplesCircle"></span>
+            </div>
+          </button>
+        </form>
+      </div>
+      
     </div>
-    <script src="individual.js"></script>
+    <div class="footer">MATCOM Times</div>
+    </body>
+    <script src="/individual.js"></script>
   </body>
 </html>

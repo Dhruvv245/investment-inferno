@@ -122,6 +122,10 @@ app.get("/stock-list", stock.stockDataFront);
 
 app.get("/stock/:stockid", stock.stockSingle);
 
+//leaderboard route
+
+app.get("/leaderBoard", stock.leader);
+
 //stocks api
 app.get("/stock-api", async (req, res) => {
   await Stock.find({ stockNum: parseInt(req.query.num) })

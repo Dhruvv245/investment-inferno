@@ -3,6 +3,8 @@ if (typeof localStorage === "undefined" || localStorage === null) {
   var LocalStorage = require("node-localstorage").LocalStorage;
   localStorage = new LocalStorage("./scratch");
 }
+const moment = require("moment");
+const date = moment();
 
 const Student = require("../models/student");
 
@@ -45,9 +47,10 @@ module.exports.stockData = async (req, res, next, check) => {
 module.exports.stockDataFront = async (req, res, next) => {
   const user = req.session.StudentId;
   if (user) {
+    const currentDate = date.format("dddd, MMMM Do YYYY");
     const data = await Stock.find();
     console.log(data);
-    res.render("stock-view", { data: data });
+    res.render("stock-view", { data: data, date: currentDate });
   } else {
     res.redirect("login");
   }
@@ -68,6 +71,24 @@ module.exports.profile = async (req, res) => {
 };
 
 module.exports.stockSingle = async (req, res, next) => {
-  console.log(req.params);
-  res.render("individual-stock");
+  // const user = req.session.StudentId;
+  // if (user) {
+  const currentDate = date.format("dddd, MMMM Do YYYY");
+
+  console.log(req.params.stockid);
+  const stock = await Stock.find({ stockNum: req.params.stockid });
+  console.log(stock[0]);
+  res.render("individual-stock", { date: currentDate, data: stock[0] });
+  // } else {
+  //   res.redirect("/login");
+  // }
+};
+
+module.exports.leader = async (req, res, next) => {
+  const user = req.session.StudentId;
+  if (user) {
+    res.render("leader");
+  } else {
+    res.redirect("/login");
+  }
 };

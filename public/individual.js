@@ -1,13 +1,12 @@
-var swiper = new Swiper(".blog-slider", {
-  spaceBetween: 30,
-  effect: "fade",
-  loop: true,
-  mousewheel: {
-    invert: false,
-  },
-  // autoHeight: true,
-  pagination: {
-    el: ".blog-slider__pagination",
-    clickable: true,
-  },
-});
+//The element
+const exact = document.getElementById("price").innerHTML;
+const stockPrice = () => {
+  let change = Math.random() * 100;
+  let value = (Math.random() * 70 - change).toFixed(2);
+  let price = document.getElementById("price");
+  price.innerHTML = exact - value;
+  console.log(value);
+  return value;
+};
+
+setInterval(stockPrice, 5000);
