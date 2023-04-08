@@ -7,6 +7,7 @@ const moment = require("moment");
 const date = moment();
 
 const Student = require("../models/student");
+const Admin = require("../models/admin");
 
 module.exports.makeStock = async (req, res, next) => {
   await new Stock({
@@ -69,14 +70,39 @@ module.exports.profile = async (req, res) => {
 
     // stock.map(async (stock, index) => {
     //   let data = await Stock.findById(stock.stockid);
-    // });
+    let price = 0;
+    stock.map((stock) => {
+      return (price = price + stock.stockid.price);
+    });
+    console.log(price);
+    let totalAmount = price + student.amount;
+    await Student.findOneAndUpdate(
+      { _id: student._id },
+      { totalAmount: totalAmount },
+      {
+        new: true,
+        upsert: true, // Make this update into an upsert
+      }
+    )
+      .then((result) => {
+        console.log(result);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
 
-    pl = Math.sqrt((student.amount - 10000) * (student.amount - 10000)) / 100;
+    console.log(student.totalAmount);
+    pl =
+      Math.sqrt(
+        (student.amount + price - 10000) * (student.amount + price - 10000)
+      ) / 100;
+    pl2 = (student.amount + price - 10000) / 100;
     res.render("profile", {
       data: student,
       pl: pl,
       stocks: stocks,
       datas: stock,
+      pl2: pl2,
     });
   } else {
     res.redirect("login");
@@ -98,9 +124,60 @@ module.exports.stockSingle = async (req, res, next) => {
 
 module.exports.leader = async (req, res, next) => {
   const user = req.session.StudentId;
-  if (user) {
-    res.render("leader");
-  } else {
-    res.redirect("/login");
-  }
+  // if (user) {
+  await Student.find()
+    .sort({ totalAmount: -1 })
+    .then(async (result) => {
+      // let totalAmount = new Array();
+
+      // const data = result.map((stock) => {
+      //   return stock.userStock;
+      // });
+      console.log(result);
+      // for (let Student of result) {
+      //   return totalAmount.push({
+      //     price: Student.amount,
+      //     stock: Student.userStock,
+      //   });
+      // }
+      // console.log(totalAmount);
+      // console.log(data);
+      // let leader = new Array();
+      // function bubbleSort(arr) {
+      //   var n = arr.length,
+      //     swapped,
+      //     tmp;
+      //   do {
+      //     swapped = false;
+      //     for (var i = 1; i < n; i++) {
+      //       // console.log(arr[i - 1]);
+      //       if (arr[i - 1].amount < arr[i].amount) {
+      //         tmp = arr[i];
+
+      //         arr[i] = arr[i - 1];
+      //         arr[i - 1] = tmp;
+
+      //         swapped = true;
+      //       }
+      //     }
+      //   } while (swapped && n--);
+      // }
+
+      // // console.log(leader);
+      const leader = await Admin.find();
+      const check = leader[0].leader;
+      console.log(check);
+      if (check) {
+        res.render("leader", { data: result });
+      } else {
+        res.render("closed");
+      }
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+
+  // } else {
+  //   res.redirect("/login");
+  // }
 };

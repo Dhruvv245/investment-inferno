@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const Stock = require("../models/stock");
 const Student = require("../models/student");
+const Admin = require("../models/admin");
 
 router.route("/test").get(async (req, res) => {
   const stocks = await Stock.find();
@@ -76,5 +77,41 @@ router
         res.status(201).send({ message: err });
       });
   });
+
+router.route("/test5").get(async (req, res) => {
+  await Admin.findOneAndUpdate(
+    { _id: "6431cd246b8a210baa7d1fe0" },
+    { leader: false },
+    {
+      new: true,
+      upsert: true, // Make this update into an upsert
+    }
+  )
+    .then((result) => {
+      console.log(result);
+      res.redirect("/Matcom@Stock123456Admin/test");
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+});
+
+router.route("/test6").get(async (req, res) => {
+  await Admin.findOneAndUpdate(
+    { _id: "6431cd246b8a210baa7d1fe0" },
+    { leader: true },
+    {
+      new: true,
+      upsert: true, // Make this update into an upsert
+    }
+  )
+    .then((result) => {
+      console.log(result);
+      res.redirect("/Matcom@Stock123456Admin/test");
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+});
 
 module.exports = router;

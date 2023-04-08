@@ -4,6 +4,11 @@ const Schema = mongoose.Schema;
 const StudentSchema = new Schema({
   name: String,
   email: String,
+  totalAmount: {
+    type: Number,
+
+    default: 10000,
+  },
   password: String,
   amount: {
     type: Number,

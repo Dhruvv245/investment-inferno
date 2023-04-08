@@ -30,20 +30,23 @@ module.exports.buy = async (req, res, next) => {
 };
 
 module.exports.sell = async (req, res, next) => {
-  const stockNum = req.body.stockNum;
-  const email = req.body.email;
+  const stockNum = req.params.stockNum;
+  const user = req.session.StudentId;
   const quantity = req.body.quantity;
+  if (user) {
+    await Student.findById(user)
+      .then(async (result) => {
+        const stock = await Stock.findOne({ stockNum: stockNum });
+        console.log(result);
 
-  await Student.findOne({ email: email })
-    .then(async (result) => {
-      const stock = await Stock.findOne({ stockNum: stockNum });
-      console.log(result);
-
-      const amount = result.amount + quantity * stock.price;
-      data = await result.sellStock(stock, quantity, amount);
-      res.status(201).send({ mesaage: "Successful Transaction", data: data });
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+        const amount = result.amount + quantity * stock.price;
+        data = await result.sellStock(stock, quantity, amount);
+        res.redirect("/profile");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  } else {
+    res.redirect("/login");
+  }
 };
