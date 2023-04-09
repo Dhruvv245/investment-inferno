@@ -124,7 +124,7 @@ app.get("/stock/:stockid", stock.stockSingle);
 
 //buy-sell logic
 app.post("/stock/:stockid", userStock.buy);
-app.post("/stock/:stockid", userStock.sell);
+app.post("/stock2/:stockid", userStock.sell);
 
 //leaderboard route
 

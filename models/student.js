@@ -30,23 +30,34 @@ const StudentSchema = new Schema({
 });
 StudentSchema.plugin(require("mongoose-autopopulate"));
 
-StudentSchema.methods.buyStock = function (stock, quan, amount) {
+StudentSchema.methods.buyStock = function (check, stock, quan, amount) {
   console.log("hit");
+  // const stockIndex = this.userStock.stocks.map((stock, index, array) => {
+  //   console.log(index);
+  //   if (index) {
+  //     return index;
+  //   } else {
+  //     return null;
+  //   }
+  // });
+
   const stockIndex = this.userStock.stocks.findIndex((cp) => {
-    console.log(cp);
-    return cp.stockid.toString() === stock._id.toString();
+    console.log(cp.stockid);
+
+    return cp.stockid.stockNum === stock;
   });
   console.log(stockIndex);
   let newQuantity = quan;
 
   const updatedStocks = [...this.userStock.stocks];
+  console.log(updatedStocks);
 
   if (stockIndex >= 0) {
     newQuantity = this.userStock.stocks[stockIndex].quantity + parseInt(quan);
     updatedStocks[stockIndex].quantity = newQuantity;
   } else {
     updatedStocks.push({
-      stockid: stock._id,
+      stockid: check,
       quantity: newQuantity,
     });
   }
@@ -67,8 +78,9 @@ StudentSchema.methods.buyStock = function (stock, quan, amount) {
 
 StudentSchema.methods.sellStock = function (stock, quan, amount) {
   const stockIndex = this.userStock.stocks.findIndex((cp) => {
-    return cp.stockid.toString() === stock._id.toString();
+    return cp.stockid.stockNum === stock;
   });
+  console.log(stockIndex);
   let newQuantity = quan;
 
   const updatedStocks = [...this.userStock.stocks];

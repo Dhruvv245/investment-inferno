@@ -74,7 +74,7 @@ module.exports.profile = async (req, res) => {
     stock.map((stock) => {
       return (price = price + stock.stockid.price);
     });
-    console.log(price);
+    // console.log(price);
     let totalAmount = price + student.amount;
     await Student.findOneAndUpdate(
       { _id: student._id },
@@ -85,13 +85,13 @@ module.exports.profile = async (req, res) => {
       }
     )
       .then((result) => {
-        console.log(result);
+        // console.log(result);
       })
       .catch((err) => {
         console.log(err);
       });
 
-    console.log(student.totalAmount);
+    // console.log(student.totalAmount);
     pl =
       Math.sqrt(
         (student.amount + price - 10000) * (student.amount + price - 10000)
