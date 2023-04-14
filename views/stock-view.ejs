@@ -69,7 +69,7 @@
             <span class="status-type">Stocks</span>
           </div>
           <div class="item-status">
-            <span class="status-number">20</span>
+            <span class="status-number"><%=participants%></span>
             <span class="status-type">Participants</span>
           </div>
         </div>
@@ -127,7 +127,7 @@
     </div>
   </a>
     <div class="project-box-wrapper">
-      <a href = "/stock/<%=data[3].stockNum%>" >
+      <a href = "/stock/<%=data[11].stockNum%>" >
       <div class="project-box" style="background-color: #e9e7fd;">
         <div class="project-box-header">
           <span>Auto</span>
@@ -149,7 +149,7 @@
           <div class="box-progress-bar">
             <span class="box-progress" style="width: 18.18%; background-color: #4f3ff0"></span>
           </div>
-          <p class="box-progress-percentage">&#8377; <%=data[3].price%></p>
+          <p class="box-progress-percentage">&#8377; <%=data[11].price%></p>
         </div>
         <div class="project-box-footer">
           <div class="days-left" style="color: #4f3ff0;">
@@ -160,7 +160,7 @@
     </a>
     </div>
     <div class="project-box-wrapper">
-      <a href = "/stock/<%=data[4].stockNum%>">
+      <a href = "/stock/<%=data[3].stockNum%>">
       <div class="project-box" style="background-color: #e9e7fd;">
         <div class="project-box-header">
           <span>FMCG</span>
@@ -181,7 +181,7 @@
           <div class="box-progress-bar">
             <span class="box-progress" style="width: 50%; background-color: #4f3ff0"></span>
           </div>
-          <p class="box-progress-percentage">&#8377; <%=data[4].price%></p>
+          <p class="box-progress-percentage">&#8377; <%=data[3].price%></p>
         </div>
         <div class="project-box-footer">
           <div class="days-left" style="color: #4f3ff0;">
@@ -192,7 +192,7 @@
       </div>
     </div>
     <div class="project-box-wrapper">
-      <a href = "/stock/<%=data[5].stockNum%>">
+      <a href = "/stock/<%=data[4].stockNum%>">
       <div class="project-box">
         <div class="project-box-header">
           <span>IT</span>
@@ -213,7 +213,7 @@
           <div class="box-progress-bar">
             <span class="box-progress" style="width: 80%; background-color: #096c86"></span>
           </div>
-          <p class="box-progress-percentage">&#8377; <%=data[5].price%></p>
+          <p class="box-progress-percentage">&#8377; <%=data[4].price%></p>
         </div>
         <div class="project-box-footer">
           <div class="days-left" style="color: #096c86;">
@@ -224,7 +224,7 @@
     </a>
     </div>
     <div class="project-box-wrapper">
-      <a href = "/stock/<%=data[6].stockNum%>">
+      <a href = "/stock/<%=data[5].stockNum%>">
       <div class="project-box" style="background-color: #ffd3e2;">
         <div class="project-box-header">
           <span>Pharma</span>
@@ -245,7 +245,7 @@
           <div class="box-progress-bar">
             <span class="box-progress" style="width: 20%; background-color: #df3670"></span>
           </div>
-          <p class="box-progress-percentage">&#8377; <%=data[6].price%></p>
+          <p class="box-progress-percentage">&#8377; <%=data[5].price%></p>
         </div>
         <div class="project-box-footer">
           <div class="days-left" style="color: #df3670;">
@@ -256,7 +256,7 @@
     </a>
     </div>
     <div class="project-box-wrapper">
-      <a href = "/stock/<%=data[7].stockNum%>">
+      <a href = "/stock/<%=data[6].stockNum%>">
       <div class="project-box" style="background-color: #c8f7dc;">
         <div class="project-box-header">
           <span>Social Media</span>
@@ -277,7 +277,7 @@
           <div class="box-progress-bar">
             <span class="box-progress" style="width: 60%; background-color: #34c471"></span>
           </div>
-          <p class="box-progress-percentage">&#8377; <%=data[7].price%></p>
+          <p class="box-progress-percentage">&#8377; <%=data[6].price%></p>
         </div>
         <div class="project-box-footer">
           <div class="days-left" style="color: #34c471;">
@@ -288,7 +288,7 @@
     </a>
     </div>
     <div class="project-box-wrapper">
-      <a href = "/stock/<%=data[8].stockNum%>">
+      <a href = "/stock/<%=data[7].stockNum%>">
       <div class="project-box" style="background-color: #d5deff;">
         <div class="project-box-header">
           <span>Feeder Industry</span>
@@ -309,7 +309,7 @@
           <div class="box-progress-bar">
             <span class="box-progress" style="width: 40%; background-color: #4067f9"></span>
           </div>
-          <p class="box-progress-percentage">&#8377; <%=data[8].price%></p>
+          <p class="box-progress-percentage">&#8377; <%=data[7].price%></p>
         </div>
         <div class="project-box-footer">
           <div class="days-left" style="color: #4067f9;">
@@ -320,7 +320,7 @@
     </a>
     </div>
     <div class="project-box-wrapper">
-      <a href = "/stock/<%=data[9].stockNum%>">
+      <a href = "/stock/<%=data[8].stockNum%>">
       <div class="project-box">
         <div class="project-box-header">
           <span>Conglomerate</span>
@@ -335,13 +335,13 @@
         </div>
         <div class="project-box-content-header">
           <p class="box-content-header">Freeliance</p>
-        </div>
+        </div> 
         <div class="box-progress-wrapper">
           <p class="box-progress-header">Amount</p>
           <div class="box-progress-bar">
             <span class="box-progress" style="width: 80%; background-color: #096c86"></span>
           </div>
-          <p class="box-progress-percentage">&#8377; <%=data[9].price%></p>
+          <p class="box-progress-percentage">&#8377; <%=data[8].price%></p>
         </div>
         <div class="project-box-footer">
           <div class="days-left" style="color: #096c86;">
@@ -352,7 +352,7 @@
     </a>
     </div>
     <div class="project-box-wrapper">
-      <a href = "/stock/<%=data[11].stockNum%>">
+      <a href = "/stock/<%=data[10].stockNum%>">
       <div class="project-box" style="background-color: #d5deff;">
         <div class="project-box-header">
           <span>Conglomerate </span>
@@ -373,7 +373,7 @@
           <div class="box-progress-bar">
             <span class="box-progress" style="width: 40%; background-color: #4067f9"></span>
           </div>
-          <p class="box-progress-percentage">&#8377; <%=data[11].price%></p>
+          <p class="box-progress-percentage">&#8377; <%=data[10].price%></p>
         </div>
         <div class="project-box-footer">
           <div class="days-left" style="color: #4067f9;">
@@ -384,7 +384,7 @@
     </a>
     </div>
     <div class="project-box-wrapper">
-      <a href = "/stock/<%=data[10].stockNum%>">
+      <a href = "/stock/<%=data[9].stockNum%>">
       <div class="project-box" style="background-color: #e9e7fd;">
         <div class="project-box-header">
           <span>Airplane industry</span>
@@ -405,7 +405,7 @@
           <div class="box-progress-bar">
             <span class="box-progress" style="width: 50%; background-color: #4f3ff0"></span>
           </div>
-          <p class="box-progress-percentage">&#8377; <%=data[10].price%></p>
+          <p class="box-progress-percentage">&#8377; <%=data[9].price%></p>
         </div>
         <div class="project-box-footer">
           <div class="days-left" style="color: #4f3ff0;">

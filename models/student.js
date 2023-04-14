@@ -88,7 +88,7 @@ StudentSchema.methods.sellStock = function (stock, quan, amount) {
   if (stockIndex >= 0) {
     newQuantity = this.userStock.stocks[stockIndex].quantity - quan;
     if (newQuantity <= 0) {
-      updatedStocks.splice(stockIndex, stockIndex);
+      updatedStocks.splice(stockIndex, 1);
     } else {
       updatedStocks[stockIndex].quantity = newQuantity;
     }

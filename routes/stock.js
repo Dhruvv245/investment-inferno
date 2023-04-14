@@ -48,12 +48,17 @@ module.exports.stockData = async (req, res, next, check) => {
 module.exports.stockDataFront = async (req, res, next) => {
   const user = req.session.StudentId;
   const leader = await Admin.find();
+  const participants = await Student.find();
   const check = leader[0].Start;
   if (user) {
     const currentDate = date.format("dddd, MMMM Do YYYY");
     const data = await Stock.find();
     if (check) {
-      res.render("stock-view", { data: data, date: currentDate });
+      res.render("stock-view", {
+        data: data,
+        date: currentDate,
+        participants: participants.length,
+      });
     } else {
       res.render("start");
     }
@@ -78,9 +83,9 @@ module.exports.profile = async (req, res) => {
     //   let data = await Stock.findById(stock.stockid);
     let price = 0;
     stock.map((stock) => {
-      return (price = price + stock.stockid.price);
+      return (price = price + stock.stockid.price * stock.quantity);
     });
-    // console.log(price);
+    console.log(price);
     let totalAmount = price + student.amount;
     await Student.findOneAndUpdate(
       { _id: student._id },
@@ -100,9 +105,9 @@ module.exports.profile = async (req, res) => {
     // console.log(student.totalAmount);
     pl =
       Math.sqrt(
-        (student.amount + price - 10000) * (student.amount + price - 10000)
+        (student.amount + price - 20000) * (student.amount + price - 20000)
       ) / 100;
-    pl2 = (student.amount + price - 10000) / 100;
+    pl2 = (student.amount + price - 20000) / 100;
     if (check) {
       res.render("profile", {
         data: student,
