@@ -21,7 +21,7 @@ module.exports.buy = async (req, res, next) => {
           );
           res.redirect("/profile");
         } else {
-          res.status(401).send({ mesaage: "Insufficient funds", data: result });
+          res.render("error");
         }
       })
       .catch((err) => {
@@ -41,6 +41,7 @@ module.exports.sell = async (req, res, next) => {
       .then(async (result) => {
         const stock = await Stock.findOne({ stockNum: stockNum });
         console.log(result, stock, "sell");
+        console.log(result.userStock.stocks);
 
         const amount = result.amount + quantity * stock.price;
         data = await result.sellStock(stock.stockNum, quantity, amount);

@@ -1,3 +1,7 @@
+setTimeout(function () {
+  window.location.reload();
+}, 15000);
+
 document.addEventListener("DOMContentLoaded", function () {
   var modeSwitch = document.querySelector(".mode-switch");
 

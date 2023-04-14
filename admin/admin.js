@@ -6,8 +6,8 @@ const Admin = require("../models/admin");
 
 router.route("/test").get(async (req, res) => {
   const stocks = await Stock.find();
-  const students = await Student.find();
-  console.log(stocks, students);
+  const students = await Student.find().sort({ totalAmount: -1 });
+
   res.render("admin", { stocks: stocks, students: students });
 });
 
@@ -48,6 +48,7 @@ router
       { price: req.body.price }
     )
       .then((result) => {
+        console.log(result);
         res.redirect("/Matcom@Stock123456Admin/test");
       })
       .catch((err) => {
@@ -113,5 +114,114 @@ router.route("/test6").get(async (req, res) => {
       console.log(err);
     });
 });
+
+router.route("/test7").get(async (req, res) => {
+  await Admin.findOneAndUpdate(
+    { _id: "6431cd246b8a210baa7d1fe0" },
+    { Start: true },
+    {
+      new: true,
+      upsert: true, // Make this update into an upsert
+    }
+  )
+    .then((result) => {
+      console.log(result);
+      res.redirect("/Matcom@Stock123456Admin/test");
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+});
+
+router.route("/test8").get(async (req, res) => {
+  await Admin.findOneAndUpdate(
+    { _id: "6431cd246b8a210baa7d1fe0" },
+    { Start: false },
+    {
+      new: true,
+      upsert: true, // Make this update into an upsert
+    }
+  )
+    .then((result) => {
+      console.log(result);
+      res.redirect("/Matcom@Stock123456Admin/test");
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+});
+
+router.route("/test9").get(async (req, res) => {
+  await Admin.findOneAndUpdate(
+    { _id: "6431cd246b8a210baa7d1fe0" },
+    { Score: true },
+    {
+      new: true,
+      upsert: true, // Make this update into an upsert
+    }
+  )
+    .then((result) => {
+      console.log(result);
+      res.redirect("/Matcom@Stock123456Admin/test");
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+});
+
+router.route("/test10").get(async (req, res) => {
+  await Admin.findOneAndUpdate(
+    { _id: "6431cd246b8a210baa7d1fe0" },
+    { Score: false },
+    {
+      new: true,
+      upsert: true, // Make this update into an upsert
+    }
+  )
+    .then((result) => {
+      console.log(result);
+      res.redirect("/Matcom@Stock123456Admin/test");
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+});
+
+router
+  .route("/test11")
+  .get(async (req, res) => {
+    res.render("give");
+  })
+  .post(async (req, res) => {
+    const user = req.body.user;
+    console.log(req.body);
+    // const email = req.body.email;
+    const quantity = req.body.quantity;
+    if (user) {
+      await Student.findOne({ email: user })
+        .then(async (result) => {
+          console.log(result);
+          const stock = await Stock.find({ stockNum: req.body.stockNum });
+          console.log(stock, "hereee");
+          if (result.amount > quantity * stock[0].price) {
+            const amount = result.amount - quantity * stock[0].price;
+            data = await result.buyStock(
+              stock[0]._id,
+              stock[0].stockNum,
+              quantity,
+              amount
+            );
+            res.redirect("/Matcom@Stock123456Admin/test");
+          } else {
+            res.render("error");
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else {
+      res.redirect("/login");
+    }
+  });
 
 module.exports = router;

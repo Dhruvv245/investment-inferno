@@ -959,14 +959,23 @@
         <div class="candidate">
           <%for(let i=0; i<data.length-1;i++) {%>
           <div class="candidate__name"># <%= i+1%> <%=data[i].name%></div>
-
-          <div class="candidate__description"><%=data[i].amount%></div>
+<%if(score){%>
+          <div class="candidate__description"><%=data[i].totalAmount%></div>
           <hr />
-          <% }%>
+         <%} else {%>
+          <div class="candidate__description">########$$$$$$</div>
+          <% }}%>
         </div>
       </div>
     </section>
     <!-- <script src="//d3js.org/d3.v3.min.js"></script>
     <script src="leader.js" defer></script> -->
+
+    <script>
+
+setTimeout(function () {
+  window.location.reload();
+}, 3000);
+    </script>
   </body>
 </html>

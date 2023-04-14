@@ -1,3 +1,7 @@
+setTimeout(function () {
+  window.location.reload();
+}, 15000);
+
 document.addEventListener("DOMContentLoaded", () => {
   document.getElementByClassName("menu-link").click(function () {
     document.getElementByClassName("menu-link").classList.remove("is-active");

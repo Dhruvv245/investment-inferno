@@ -47,11 +47,16 @@ module.exports.stockData = async (req, res, next, check) => {
 
 module.exports.stockDataFront = async (req, res, next) => {
   const user = req.session.StudentId;
+  const leader = await Admin.find();
+  const check = leader[0].Start;
   if (user) {
     const currentDate = date.format("dddd, MMMM Do YYYY");
     const data = await Stock.find();
-
-    res.render("stock-view", { data: data, date: currentDate });
+    if (check) {
+      res.render("stock-view", { data: data, date: currentDate });
+    } else {
+      res.render("start");
+    }
   } else {
     res.redirect("login");
   }
@@ -61,7 +66,8 @@ module.exports.profile = async (req, res) => {
   const user = req.session.StudentId;
 
   const student = await Student.findById(user);
-
+  const leader = await Admin.find();
+  const check = leader[0].Start;
   if (student) {
     const stocks = student.userStock.stocks.length;
     const stock = student.userStock.stocks;
@@ -97,13 +103,17 @@ module.exports.profile = async (req, res) => {
         (student.amount + price - 10000) * (student.amount + price - 10000)
       ) / 100;
     pl2 = (student.amount + price - 10000) / 100;
-    res.render("profile", {
-      data: student,
-      pl: pl,
-      stocks: stocks,
-      datas: stock,
-      pl2: pl2,
-    });
+    if (check) {
+      res.render("profile", {
+        data: student,
+        pl: pl,
+        stocks: stocks,
+        datas: stock,
+        pl2: pl2,
+      });
+    } else {
+      res.render("start");
+    }
   } else {
     res.redirect("login");
   }
@@ -111,16 +121,29 @@ module.exports.profile = async (req, res) => {
 
 module.exports.stockSingle = async (req, res, next) => {
   const user = req.session.StudentId;
+  const leader = await Admin.find();
+  const check = leader[0].Start;
   if (user) {
     const currentDate = date.format("dddd, MMMM Do YYYY");
 
     const stock = await Stock.find({ stockNum: req.params.stockid });
-
-    res.render("individual-stock", { date: currentDate, data: stock[0] });
+    const student = await Student.findById(user);
+    const stocks = student.userStock.stocks;
+    if (check) {
+      res.render("individual-stock", {
+        date: currentDate,
+        data: stock[0],
+        stocks: stocks,
+        num: req.params.stockid,
+      });
+    } else {
+      res.render("start");
+    }
   } else {
     res.redirect("/login");
   }
 };
+2;
 
 module.exports.leader = async (req, res, next) => {
   const user = req.session.StudentId;
@@ -166,9 +189,10 @@ module.exports.leader = async (req, res, next) => {
       // // console.log(leader);
       const leader = await Admin.find();
       const check = leader[0].leader;
+      const score = leader[0].Score;
       console.log(check);
       if (check) {
-        res.render("leader", { data: result });
+        res.render("leader", { data: result, score: score });
       } else {
         res.render("closed");
       }

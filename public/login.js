@@ -24,19 +24,22 @@ function showErr(input, message) {
   inputField.className = "input-field error";
   const small = inputField.querySelector("small");
   small.innerText = message;
+  console.log("true");
 }
 
 function showSucc(input) {
   const inputField = input.parentElement;
   inputField.className = "input-field success";
+  console.log("false");
+  return false;
 }
 function checkEmail(input) {
   const re = /[0-9]+[a-zA-Z]+[0-9]+@nith\.ac\.in/i;
+  // const regex = ^[2][2][a-zA-Z]{3}\d{3}@nith[.]ac[.]in$/
   if (re.test(input.value.trim())) {
-    localStorage.setItem("invalidWorkshopForm", false);
     showSucc(input);
+    return true;
   } else {
-    localStorage.setItem("invalidWorkshopForm", true);
     showErr(
       input,
       "Please enter valid college email id (eg.21bma010@nith.ac.in)"
@@ -98,14 +101,10 @@ function checkLength(input, min, max) {
 
 form.addEventListener("submit", function (evt) {
   checkRequired([email, name]);
-
-  checkEmail(email);
+  if (!checkRequired([email, name]) && !checkEmail(email)) {
+    console.log("here");
+    evt.preventDefault();
+  } else {
+    form.addEventListener("submit");
+  }
 });
-
-// form2.addEventListener("submit", function (evt) {
-//   evt.preventDefault();
-//   localStorage.setItem("invalidWorkshopForm", false);
-//   checkRequired([email, suggestions]);
-//   checkEmail(email);
-//   checkSuggestions(suggestions);
-// });

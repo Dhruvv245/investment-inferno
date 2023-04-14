@@ -9,4 +9,4 @@ const stockPrice = () => {
   return value;
 };
 
-setInterval(stockPrice, 5000);
+// setInterval(stockPrice, 5000);

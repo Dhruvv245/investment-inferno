@@ -6,6 +6,14 @@ const adminSchema = new Schema({
     type: Boolean,
     default: true,
   },
+  Start: {
+    type: Boolean,
+    default: true,
+  },
+  Score: {
+    type: Boolean,
+    default: true,
+  },
 });
 
 module.exports = mongoose.model("Admin", adminSchema);

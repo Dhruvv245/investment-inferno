@@ -68,7 +68,14 @@
             </div>
           </button>
         </form>
+        <h2>Your STOCKS:-</h2> 
+      <%if(stocks.length!=0) {for(let i=0; i<stocks.length; i++) 
+       
+        {%>
+          <br/><p><a href="/stock/<%=stocks[i].stockid.stockNum%>"><%=stocks[i].stockid.name%></a></p><p>Price:- <%=stocks[i].stockid.price%></p><p>Quantity:- <%=stocks[i].quantity%></p>
+          <% }}%><br/>
       </div>
+      
       
     </div>
     <div class="footer">MATCOM Times</div>
