@@ -957,7 +957,7 @@
     <section class="section section--results">
       <div class="section__inner">
         <div class="candidate">
-          <%for(let i=0; i<data.length-1;i++) {%>
+          <%for(let i=0; i<data.length;i++) {%>
           <div class="candidate__name"># <%= i+1%> <%=data[i].name%></div>
 <%if(score){%>
           <div class="candidate__description"><%=data[i].totalAmount%></div>

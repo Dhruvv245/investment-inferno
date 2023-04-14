@@ -106,7 +106,7 @@ module.exports.profile = async (req, res) => {
     pl =
       Math.sqrt(
         (student.amount + price - 20000) * (student.amount + price - 20000)
-      ) / 100;
+      ) / 200;
     pl2 = (student.amount + price - 20000) / 200;
     if (check) {
       res.render("profile", {
