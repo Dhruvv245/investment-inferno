@@ -13,8 +13,6 @@ const transporter = nodemailer.createTransport({
     user: process.env.GMAIL_MAIL,
     pass: process.env.GMAIL_PASSWORD,
   },
-  port: 465,
-  host: "smtp.gmail.com",
 });
 
 transporter.verify((error, success) => {
@@ -54,9 +52,7 @@ module.exports.UserRegister = async (req, res, next) => {
         from: process.env.GMAIL_MAIL,
         to: email,
         subject: "Welcome to BSC EXCHANGE",
-        html: `
-Dear ${name} your password is :-${password}. Please use this to login again.`,
-      };
+        html: `Dear ${name} your password is :-${password}. Please use this to login again.`};
 
       transporter
         .sendMail(mailOptions)

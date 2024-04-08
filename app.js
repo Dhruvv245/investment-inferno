@@ -4,6 +4,8 @@ if (process.env.NODE_ENV !== "production") {
 
 const express = require("express");
 const app = express();
+const http = require(`http`);
+const { Server } = require(`socket.io`);
 const port = process.env.PORT || 8080;
 const path = require("path");
 const mongoose = require("mongoose");
@@ -16,6 +18,7 @@ const console = require("console");
 const MONGODB_URI = process.env.MONGODB_URI;
 const cors = require("cors");
 const session = require("express-session");
+const { makeStock } = require("./routes/stock");
 
 const stockPrice = () => {
   const date = new Date();
@@ -119,8 +122,11 @@ app.get("/profile", stock.profile);
 app.get("/stock-list", stock.stockDataFront);
 
 //individual stocks route
+// app.get("/stock/chart/:num",stock.getChart);
+app.get("/stock/:stockid",stock.stockSingle);
 
-app.get("/stock/:stockid", stock.stockSingle);
+//create Stock
+app.post("/createStock", makeStock);
 
 //buy-sell logic
 app.post("/stock/:stockid", userStock.buy);
@@ -145,18 +151,42 @@ app.get("/stock-api", async (req, res) => {
     });
 });
 
-app.all("*", (req, res, next) => {
-  next(res.render("test"));
-});
-
+const server = http.createServer(app);
+const io = new Server(server);
+app.set("socketio", io);
 mongoose
   .connect(MONGODB_URI)
   .then(async (result) => {
     console.log("Database Connected!!");
-    app.listen(port, () => {
+    server.listen(port, () => {
       console.log("lets goo");
     });
   })
   .catch((err) => {
     console.log(err);
   });
+
+//Chart route
+// let cnt = 0;
+// async function stockData(cnt) {
+//   const stocks = await Stock.find();
+//   const stockData = stocks.map((stock) => stock.stockdata);
+//   const requiredStockData = stockData.map((stock) => {
+//     return stock.filter((data, i) => i < cnt / 15);
+//   });
+//   console.log(requiredStockData);
+//   io.emit("stockData", requiredStockData);
+// }
+
+// setInterval(async () => {
+//   cnt = cnt + 15;
+//   await stockData(cnt);
+//   console.log(cnt);
+// }, 15000);
+// app.get("/chart", (req, res) => {
+//   res.render("charts");
+// });
+
+app.all("*", (req, res, next) => {
+  next(res.render("test"));
+});

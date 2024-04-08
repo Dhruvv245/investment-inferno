@@ -8,9 +8,22 @@ const stockSchema = new Schema({
     unique: true,
   },
   name: String,
-  price: Number,
+  price: {
+    type:Number,
+    set:function(v){
+      return this.stockdata[this.stockdata.length-1].CLOSE;
+    }
+  },
   description: String,
   message: String,
+  stockdata:[
+    {
+      OPEN: Number,
+      HIGH: Number,
+      LOW: Number,
+      CLOSE: Number,
+    }
+  ],
 });
 
 module.exports = mongoose.model("Stock", stockSchema);

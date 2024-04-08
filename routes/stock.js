@@ -9,46 +9,123 @@ const date = moment();
 const Student = require("../models/student");
 const Admin = require("../models/admin");
 
-module.exports.makeStock = async (req, res, next) => {
-  await new Stock({
-    stockNum: 1,
-    name: "test1",
-    price: 100,
-    description: "ambani",
-  })
-    .save()
-    .then((res) => {
-      console.log(res);
-      next();
-    })
-    .catch((err) => {
-      console.log(err);
+const sentData = {};
+const indices = {};
+const intervals = {};
+
+module.exports.getChart = async (req, res, next) => {
+  const io = req.app.get("socketio");
+
+  const stocks = await Stock.find({});
+  for (let stock of stocks) {
+    const stockNum = stock.stockNum;
+    if (!intervals[stockNum]) {
+      indices[stockNum] = 0;
+      sentData[stockNum] = [];
+      intervals[stockNum] = setInterval(() => {
+        if (indices[stockNum] >= stock.stockdata.length) {
+          clearInterval(intervals[stockNum]);
+          delete intervals[stockNum];
+          return;
+        }
+        const data = stock.stockdata.slice(0, indices[stockNum] + 1);
+        sentData[stockNum] = data;
+        // console.log(`Emitting data for stock ${stockNum}:`, data);
+        io.emit("stockData", { stockNum, data });
+
+        indices[stockNum]++;
+      }, 15000);
+    }
+  }
+
+  io.on("connection", (socket) => {
+    socket.on("join", (stockNum) => {
+      socket.join(stockNum);
+      if (sentData[stockNum]) {
+        socket.emit("stockData", { stockNum, data: sentData[stockNum] });
+      }
     });
+  });
+
+  next();
+};
+
+// const indices = {};
+// const intervals = {};
+// module.exports.getChart = async (req, res, next) => {
+//   const io = req.app.get("socketio");
+//   io.on("connection", (socket) => {
+//     socket.on("join", async (data) => {
+//       socket.join(data);
+
+//       const stock = await Stock.findOne({ stockNum: data });
+//       if (!stock) {
+//         return;
+//       }
+
+//       if (!intervals[data]) {
+//         indices[data] = 0;
+//         intervals[data] = setInterval(() => {
+//           if (indices[data] >= stock.stockdata.length) {
+//             clearInterval(intervals[data]);
+//             delete intervals[data];
+//             return;
+//           }
+//           io.to(data).emit(
+//             "stockData",
+//             stock.stockdata.slice(0, indices[data] + 1)
+//           );
+
+//           indices[data]++;
+//         }, 15000);
+//       } else {
+//         socket.emit("stockData", stock.stockdata.slice(0, indices[data] + 1));
+//       }
+//     });
+//   });
+//   next();
+//   // res.render("chart", {
+//   //   title: "Chart",
+//   //   stockNum,
+//   // });
+// };
+
+module.exports.makeStock = async (req, res, next) => {
+  // await new Stock({
+  //   stockNum: 1,
+  //   name: "test1",
+  //   price: 100,
+  //   description: "ambani",
+  // })
+  //   .save()
+  //   .then((res) => {
+  //     console.log(res);
+  //     next();
+  //   })
+  //   .catch((err) => {
+  //     console.log(err);
+  //   });
+
+  try {
+    const data = req.body;
+    console.log(data);
+    const newStock = await Stock.create(data);
+    res.status(201).send(newStock);
+  } catch (error) {
+    console.group(error);
+    res.status(500).send(error);
+  }
 };
 
 //api-for getting stocks
-
-module.exports.stockData = async (req, res, next, check) => {
-  let value1 = Math.random() * 22;
-  let plusOrMinus = Math.round(Math.random()) * 2 - 1;
-
-  await Stock.find({ stockNum: parseInt(req.query.num) })
-    .then((result) => {
-      const stockPrice = result[0].price + plusOrMinus * 0.5 * value1;
-      console.log(stockPrice);
-      res
-        .status(200)
-        .send({ message: "succes", data: result[0], stockPrice: stockPrice });
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-};
 
 module.exports.stockDataFront = async (req, res, next) => {
   const user = req.session.StudentId;
   const leader = await Admin.find();
   const participants = await Student.find();
+  if (!leader.length) {
+    return next(new Error("No leader found"));
+  }
   const check = leader[0].Start;
   if (user) {
     const currentDate = date.format("dddd, MMMM Do YYYY");
@@ -69,40 +146,30 @@ module.exports.stockDataFront = async (req, res, next) => {
 
 module.exports.profile = async (req, res) => {
   const user = req.session.StudentId;
-
   const student = await Student.findById(user);
   const leader = await Admin.find();
   const check = leader[0].Start;
   if (student) {
     const stocks = student.userStock.stocks.length;
     const stock = student.userStock.stocks;
-
-    // let newStocks = new Array();
-
-    // stock.map(async (stock, index) => {
-    //   let data = await Stock.findById(stock.stockid);
     let price = 0;
-    stock.map((stock) => {
-      return (price = price + stock.stockid.price * stock.quantity);
-    });
-    console.log(price);
-    let totalAmount = price + student.amount;
-    await Student.findOneAndUpdate(
-      { _id: student._id },
-      { totalAmount: totalAmount },
-      {
-        new: true,
-        upsert: true, // Make this update into an upsert
-      }
-    )
-      .then((result) => {
-        // console.log(result);
-      })
-      .catch((err) => {
-        console.log(err);
+    stock &&
+      stock.map((stock) => {
+        return (price = price + stock.stockid.price * stock.quantity);
       });
-
-    // console.log(student.totalAmount);
+    let totalAmount = price + student.amount;
+    try{
+      await Student.findOneAndUpdate(
+        { _id: student._id },
+        { totalAmount: totalAmount },
+        {
+          new: true,
+          upsert: true,
+        }
+      );
+    }catch(err){
+      console.log(err);
+    }
     pl =
       Math.sqrt(
         (student.amount + price - 20000) * (student.amount + price - 20000)

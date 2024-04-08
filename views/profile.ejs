@@ -332,7 +332,7 @@
             <div class="content-section">
               <div class="content-section-title">Stocks in your Portfolio</div>
               <div class="apps-card">
-                <%if(data.userStock.stocks.length!=0) {for(let stock of datas)
+                <%if(data.userstock?.stocks.length!=0) {for(let stock of datas)
                 {%>
                 <div class="app-card">
                   <span>
@@ -354,17 +354,19 @@
                         fill="white"
                       ></path>
                     </svg>
-                    <%=stock.stockid.name%>
+                    <%=stock?.stockid?.name%>
                   </span>
                   <div class="app-card__subtext">
-                    &#8377; <%=stock.stockid.price%>
+                    &#8377; <%=stock?.stockid?.price%>
                   </div>
                   <div class="app-card__subtext">
-                    Quantity:- <%=stock.quantity%>
+                    Quantity:- <%=stock?.quantity%>
                   </div>
                   <div class="app-card-buttons">
                     <button class="content-button status-button">
-                      <a href="/stock/<%=stock.stockid.stockNum%>">More Info</a>
+                      <a href="/stock/<%=stock?.stockid?.stockNum%>"
+                        >More Info</a
+                      >
                     </button>
                     <div class="menu"></div>
                   </div>
